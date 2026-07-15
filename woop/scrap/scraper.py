@@ -1,5 +1,6 @@
 import requests
 import json
+import csv
 
 from .extractor import Extractor
 from .exceptions import WoopConnectionError
@@ -132,5 +133,53 @@ class Scrap:
                 indent=4,
                 ensure_ascii=False
             )
+
+        return filename
+
+    def export_csv(
+            self,
+            filename="result.csv"
+    ):
+
+        data = self.extract()
+
+        with open(
+                filename,
+                "w",
+                newline="",
+                encoding="utf-8"
+        ) as file:
+
+            writer = csv.writer(file)
+
+            # écrire les colonnes
+            writer.writerow(
+                [
+                    "field",
+                    "value"
+                ]
+            )
+
+            # écrire les données
+            for key, value in data.items():
+
+                if isinstance(value, list):
+
+                    value = ", ".join(value)
+
+
+                elif isinstance(value, dict):
+
+                    value = json.dumps(
+                        value,
+                        ensure_ascii=False
+                    )
+
+                writer.writerow(
+                    [
+                        key,
+                        value
+                    ]
+                )
 
         return filename

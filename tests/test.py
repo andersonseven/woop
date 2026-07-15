@@ -7,6 +7,10 @@ fichier = page.export_json(
     "quotes.json"
 )
 
+fichier_csv = page.export_csv("wiki.csv")
+
+print("fichier cree : ", fichier_csv)
+
 
 print(
     "Fichier créé :",
