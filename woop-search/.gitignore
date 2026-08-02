@@ -1,0 +1,27 @@
+# Environnement virtuel
+.venv/
+venv/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+
+# Cache des tests
+.pytest_cache/
+
+# Couverture de tests
+.coverage
+htmlcov/
+
+# Fichiers de build
+build/
+dist/
+*.egg-info/
+
+# Fichiers de l'éditeur
+.vscode/
+.idea/
+
+# Fichiers du système
+.DS_Store
+Thumbs.db

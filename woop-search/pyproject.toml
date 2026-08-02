@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "woop-search"
+version = "0.1.0"
+description = "A fast command-line tool for searching text across files."
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "rich>=13.0.0"
+]
+
+license = {text = "MIT"}
+
+authors = [
+    {name = "WOOP"}
+]
+
+keywords = [
+    "search",
+    "files",
+    "cli",
+    "python",
+    "automation"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[project.scripts]
+woop-search = "woop_search.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["woop_search*"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0"
+]
