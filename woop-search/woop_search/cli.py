@@ -128,25 +128,34 @@ def print_search_information(
 
     table.add_row(
         "Recherche :",
-        f"[bold yellow]{query}[/bold yellow]",
+        Text(
+            query,
+            style="bold yellow",
+        ),
     )
 
     table.add_row(
         "Dossier :",
-        str(Path(folder).resolve()),
+        Text(
+            str(Path(folder).resolve())
+        ),
     )
 
     table.add_row(
         "Sous-dossiers :",
-        "Oui" if recursive else "Non",
+        Text(
+            "Oui" if recursive else "Non"
+        ),
     )
 
     table.add_row(
         "Majuscules :",
-        (
-            "Respectées"
-            if case_sensitive
-            else "Ignorées"
+        Text(
+            (
+                "Respectées"
+                if case_sensitive
+                else "Ignorées"
+            )
         ),
     )
 
@@ -165,10 +174,11 @@ def print_results(
 
         console.print(
             Panel(
-                "[bold yellow]"
-                "Aucune occurrence trouvée."
-                "[/bold yellow]",
-                title="[bold]Résultat[/bold]",
+                Text(
+                    "Aucune occurrence trouvée.",
+                    style="bold yellow",
+                ),
+                title="Résultat",
                 border_style="yellow",
             )
         )
@@ -177,9 +187,10 @@ def print_results(
 
     console.print(
         Rule(
-            "[bold bright_cyan]"
-            "RÉSULTATS"
-            "[/bold bright_cyan]"
+            Text(
+                "RÉSULTATS",
+                style="bold bright_cyan",
+            )
         )
     )
 
@@ -225,9 +236,16 @@ def print_results(
             relative_path = match.file_path
 
         table.add_row(
-            str(relative_path),
-            str(match.line_number),
-            match.line_content,
+            Text(
+                str(relative_path)
+            ),
+            Text(
+                str(match.line_number),
+                style="yellow",
+            ),
+            Text(
+                match.line_content
+            ),
         )
 
     console.print(table)
@@ -245,9 +263,10 @@ def print_summary(
 
     console.print(
         Rule(
-            "[bold bright_cyan]"
-            "RÉSUMÉ"
-            "[/bold bright_cyan]"
+            Text(
+                "RÉSUMÉ",
+                style="bold bright_cyan",
+            )
         )
     )
 
@@ -293,7 +312,10 @@ def print_summary(
     console.print()
 
     console.print(
-        "[dim]WOOP — Small tools. Less work.[/dim]",
+        Text(
+            "WOOP — Small tools. Less work.",
+            style="dim",
+        ),
         justify="center",
     )
 
@@ -322,9 +344,10 @@ def main() -> None:
     try:
 
         with console.status(
-            "[bold bright_cyan]"
-            "WOOP Search analyse les fichiers..."
-            "[/bold bright_cyan]",
+            Text(
+                "WOOP Search analyse les fichiers...",
+                style="bold bright_cyan",
+            ),
             spinner="dots",
         ):
 
@@ -340,7 +363,10 @@ def main() -> None:
     except FileNotFoundError as error:
 
         console.print(
-            f"[bold red]Erreur :[/bold red] {error}"
+            Text(
+                f"Erreur : {error}",
+                style="bold red",
+            )
         )
 
         sys.exit(1)
@@ -348,7 +374,10 @@ def main() -> None:
     except NotADirectoryError as error:
 
         console.print(
-            f"[bold red]Erreur :[/bold red] {error}"
+            Text(
+                f"Erreur : {error}",
+                style="bold red",
+            )
         )
 
         sys.exit(1)
@@ -356,7 +385,10 @@ def main() -> None:
     except ValueError as error:
 
         console.print(
-            f"[bold red]Erreur :[/bold red] {error}"
+            Text(
+                f"Erreur : {error}",
+                style="bold red",
+            )
         )
 
         sys.exit(1)
